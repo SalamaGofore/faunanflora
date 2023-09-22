@@ -5,12 +5,11 @@ import fi.ukkosnetti.faunanflora.db.repository.FaunaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class FaunaController {
@@ -32,5 +31,13 @@ public class FaunaController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Fauna> postFauna(@RequestBody String fauna) {
         return new ResponseEntity<>(repo.save(new Fauna(fauna)), HttpStatus.CREATED);
+    }
+
+    @GetMapping(path = "/api/fauna/{name}",
+      produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Fauna> getByName(@PathVariable String name) {
+        Optional<Fauna> fauna = repo.findByName(name);
+        return fauna.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+          .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
     }
 }
