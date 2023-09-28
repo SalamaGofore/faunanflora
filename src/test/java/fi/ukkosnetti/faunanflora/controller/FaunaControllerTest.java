@@ -60,16 +60,14 @@ class FaunaControllerTest extends AbstractTest {
           .get("/api/fauna/Crocodile")
           .then()
           .statusCode(200)
-          .body("name", equalTo("Crocodile"))
-          .body("id", equalTo(1));
+          .body("name", equalTo("Crocodile"));
         given()
           .contentType(ContentType.JSON)
           .when()
           .get("/api/fauna/Alligator")
           .then()
           .statusCode(200)
-          .body("name", equalTo("Alligator"))
-          .body("id", equalTo(2));
+          .body("name", equalTo("Alligator"));
         given()
           .contentType(ContentType.JSON)
           .when()

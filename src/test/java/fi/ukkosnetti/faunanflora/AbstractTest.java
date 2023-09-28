@@ -3,6 +3,7 @@ package fi.ukkosnetti.faunanflora;
 
 import fi.ukkosnetti.faunanflora.db.repository.FaunaRepository;
 import fi.ukkosnetti.faunanflora.db.repository.FloraRepository;
+import fi.ukkosnetti.faunanflora.db.repository.HabitatRepository;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -28,6 +29,9 @@ public abstract class AbstractTest {
     @Autowired
     protected FloraRepository floraRepository;
 
+    @Autowired
+    protected HabitatRepository habitatRepository;
+
     @BeforeAll
     static void beforeAll() {
         postgres.start();
@@ -43,6 +47,7 @@ public abstract class AbstractTest {
         RestAssured.baseURI = "http://localhost:" + port;
         faunaRepository.deleteAll();
         floraRepository.deleteAll();
+        habitatRepository.deleteAll();
     }
 
     @DynamicPropertySource
