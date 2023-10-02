@@ -15,7 +15,6 @@ public interface HabitatRepository extends CrudRepository<Habitat, Long> {
 
   Optional<Habitat> findByName(String name);
 
-  @Query("SELECT h.id as id, h.name as name FROM Habitat h WHERE h.name = :habitat")
-  Optional<HabitatLite> findByNameLite(@Param("habitat") String name);
+  Optional<HabitatLite> findHabitatLiteByName(String name);
 
 }

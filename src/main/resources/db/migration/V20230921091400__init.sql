@@ -1,5 +1,6 @@
 CREATE TABLE Habitat (
     id SERIAL PRIMARY KEY,
+    metadata jsonb,
     name VARCHAR(255) UNIQUE
 );
 

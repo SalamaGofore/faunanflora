@@ -3,10 +3,12 @@ package fi.ukkosnetti.faunanflora.db.models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.annotation.PersistenceCreator;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 ;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Habitat {
@@ -15,6 +17,9 @@ public class Habitat {
   public Long id;
 
   public String name;
+
+  @Column("metadata")
+  public Metadata metadata;
 
   public final Set<Fauna> fauna = new HashSet<>();
 

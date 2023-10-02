@@ -35,7 +35,7 @@ public class HabitatController {
 
   @GetMapping(path = "/api/habitat/{habitat}/lite")
   public ResponseEntity<HabitatLite> getLiteHabitat(@PathVariable String habitat) {
-    Optional<HabitatLite> habit = repo.findByNameLite(habitat);
+    Optional<HabitatLite> habit = repo.findHabitatLiteByName(habitat);
     return habit.map(h -> new ResponseEntity<>(h, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
   }
 
